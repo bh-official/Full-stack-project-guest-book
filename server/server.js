@@ -24,13 +24,13 @@ app.get('/guestbook', async (req, res) => {
 
 app.post('/guestbook', async (req, res) => {
     try {
-    const userData = req.body
+    const { msg_name, content } = req.body
 
     if (!msg_name || !content) {
     return res.status(400).json({ error: "Name and message are required" })
     }
 
-    const dbQuery = await db.query(`INSERT INTO guestbook (msg_name, content) VALUES ($1, $2)`, [userData.msg_name, userData.content])
+    const dbQuery = await db.query(`INSERT INTO guestbook (msg_name, content) VALUES ($1, $2)`, [msg_name, content])
 
     res.status(201).json({message: "added message"})
     } catch (err){

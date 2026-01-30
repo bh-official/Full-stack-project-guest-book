@@ -20,6 +20,7 @@ async function fetchData() {
 
 
 async function displayMessages() {
+  display.innerHTML = ""
   const messages = await fetchData()
   
 
@@ -112,7 +113,6 @@ async function displayMessages() {
     display.appendChild(div)
   })
 }
-displayMessages()
 
 
 async function handleSubmit(event) {
@@ -128,16 +128,11 @@ async function handleSubmit(event) {
   if (!name || !content) {
   alert("All fields are required")
   return
-}
+  }
   if (content.length < 5) {
   alert("Message must be at least 5 characters")
   return
-}
-
-  // const userInputJSON = JSON.stringify({
-  // msg_name: name,
-  // content: content
-  // })
+  }
 
 
   const response = await fetch(`${baseURL}/guestbook`, {
@@ -151,9 +146,11 @@ async function handleSubmit(event) {
     })
   })
   display.innerHTML = ""
-  displayMessages()
+  requestAnimationFrame(displayMessages)
   form.reset()
 } 
+
+requestAnimationFrame(displayMessages)
 
 form.addEventListener('submit', handleSubmit)
 
