@@ -98,6 +98,21 @@ app.put('/guestbook/:id', async (req, res) => {
   res.json({ message: "updated message" })
 })
 
+app.put('/guestbook/:id/like', async (req, res) => {
+  const { id } = req.params
+
+  const result = await db.query(
+    `UPDATE guestbook
+    SET likes = likes + 1
+    WHERE id = $1
+    RETURNING likes`,
+    [id]
+  )
+
+  res.json(result.rows[0])
+})
+
+
 
 
 

@@ -30,6 +30,7 @@ async function displayMessages() {
     const timeCreated = document.createElement(`small`)
     const deleteBtn = document.createElement(`button`)
     const editBtn = document.createElement(`button`)
+    const likeBtn = document.createElement(`button`)
     
 
     userName.textContent = message.msg_name
@@ -37,8 +38,9 @@ async function displayMessages() {
     timeCreated.textContent = new Date(message.created_at).toLocaleString()
     deleteBtn.textContent = "Delete"
     editBtn.textContent = "Edit"
+    likeBtn.textContent = `❤️ ${message.likes}`
 
-
+    // Delete Button
     deleteBtn.type = "button"
     deleteBtn.addEventListener(`click`, async () => {
       const confirmed = confirm("Are you sure you want to delete this message?")
@@ -62,6 +64,7 @@ async function displayMessages() {
     })
 
 
+    // Update Button
     editBtn.type = "button"
     editBtn.addEventListener("click", async () => {
     const newName = prompt("Edit name:", message.msg_name)
@@ -84,6 +87,17 @@ async function displayMessages() {
     } else {
     alert("Update failed")
     }
+    })
+
+
+    // like button
+    likeBtn.addEventListener("click", async () => {
+    const response = await fetch(`${baseURL}/guestbook/${message.id}/like`, {
+    method: "PUT"
+    })
+
+    const data = await response.json()
+    likeBtn.textContent = `❤️ ${data.likes}`
     })
 
 
