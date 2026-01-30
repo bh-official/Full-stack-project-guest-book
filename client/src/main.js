@@ -96,6 +96,7 @@ async function displayMessages() {
 
 
     // like button
+    likeBtn.type = "button"
     likeBtn.addEventListener("click", async () => {
     likeBtn.disabled = true
     const response = await fetch(`${baseURL}/guestbook/${message.id}/like`, {
