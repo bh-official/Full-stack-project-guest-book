@@ -1,4 +1,4 @@
-console.log("CLIENT JS LOADED")
+
 
 // fetch messages
 
@@ -100,17 +100,34 @@ async function handleSubmit(event) {
 
   const formData = new FormData(form)
   const userInput = Object.fromEntries(formData)
-  const userInputJSON = JSON.stringify(userInput)
+
+  
+  const name = userInput.msg_name.trim()
+  const content = userInput.content.trim()
+
+  if (!name || !content) return
+  if (content.length < 5) return
+
+  // const userInputJSON = JSON.stringify({
+  // msg_name: name,
+  // content: content
+  // })
+
 
   const response = await fetch(`${baseURL}/guestbook`, {
     headers: {
       "Content-Type" : "application/json"
     },
     method: "POST",
-    body: userInputJSON
+    body: JSON.stringify({
+    msg_name: name,
+    content: content
+    })
   })
-  window.location.reload()
+  display.innerHTML = ""
+  displayMessages()
+  form.reset()
 } 
 
 form.addEventListener('submit', handleSubmit)
-console.log("FORM SUBMITTED VIA JS")
+
