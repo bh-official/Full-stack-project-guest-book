@@ -21,6 +21,7 @@ async function fetchData() {
 
 async function displayMessages() {
   const messages = await fetchData()
+  
 
   messages.forEach((message) => {
     const div = document.createElement('div')
@@ -28,6 +29,10 @@ async function displayMessages() {
     const messageContent = document.createElement('p')
     const timeCreated = document.createElement(`small`)
     const deleteBtn = document.createElement(`button`)
+    deleteBtn.type = "button"
+
+    console.log("RENDERING MESSAGE:", message)
+
     
 
     userName.textContent = message.msg_name
@@ -36,6 +41,7 @@ async function displayMessages() {
     deleteBtn.textContent ="Delete"
 
     deleteBtn.addEventListener(`click`, async () => {
+      console.log("DELETE CLICKED")
       console.log("Deleting ID:", message.id)
       const response = await fetch(`${baseURL}/guestbook/${message.id}`, {
       method: "DELETE"
