@@ -24,7 +24,7 @@ app.get('/guestbook', async (req, res) => {
 
 app.post('/guestbook', async (req, res) => {
     try {
-    const { msg_name, content } = req.body
+        const { msg_name, content } = req.body
 
     if (!msg_name || !content) {
     return res.status(400).json({ error: "Name and message are required" })
