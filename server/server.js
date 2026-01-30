@@ -74,13 +74,15 @@ app.delete('/guestbook/:id', async (req, res) => {
   )
 
   console.log("ROWS DELETED:", result.rows)
-
+  
   if (result.rows.length === 0) {
     return res.status(404).json({ error: "Nothing deleted" })
   }
 
   res.status(200).json({ message: "deleted" })
 })
+
+
 
 
 app.listen(4242, () => {

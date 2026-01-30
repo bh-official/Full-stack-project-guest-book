@@ -1,3 +1,4 @@
+console.log("CLIENT JS LOADED")
 
 // fetch messages
 
