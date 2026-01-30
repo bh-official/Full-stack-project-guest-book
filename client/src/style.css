@@ -38,12 +38,13 @@ form textarea {
   width: 100%;
   padding: 10px;
   margin-bottom: 0.8rem;
-  border: 2px solid red;
+  border: 1px solid white;
   border-radius: 4px;
   font-size: 16px;
   height: 120px;
   resize: none;      
   overflow-y: scroll;  
+  font-family: inherit;
   line-height: 1.4;    /* scrolling */
 }
 
@@ -153,8 +154,8 @@ h1 {
   }
 
   form textarea {
-    /* max-height: 130px; */
     height: 140px;
+    font-family: inherit;
   }
 }
 
