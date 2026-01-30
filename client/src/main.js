@@ -29,10 +29,6 @@ async function displayMessages() {
     const messageContent = document.createElement('p')
     const timeCreated = document.createElement(`small`)
     const deleteBtn = document.createElement(`button`)
-    deleteBtn.type = "button"
-
-    console.log("RENDERING MESSAGE:", message)
-
     
 
     userName.textContent = message.msg_name
@@ -40,13 +36,17 @@ async function displayMessages() {
     timeCreated.textContent = new Date(message.created_at).toLocaleString()
     deleteBtn.textContent ="Delete"
 
+    deleteBtn.type = "button"
     deleteBtn.addEventListener(`click`, async () => {
       const confirmed = confirm("Are you sure you want to delete this message?")
 
-      if (!confirmed) return
+      if (!confirmed) {
+      console.log("Delete cancelled")
+      return
+      }
 
       console.log("Deleting ID:", message.id)
-      
+
       const response = await fetch(`${baseURL}/guestbook/${message.id}`, {
       method: "DELETE"
       })
