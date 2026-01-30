@@ -53,6 +53,13 @@ app.post('/guestbook', async (req, res) => {
     res.status(200).json({message: "added message"})
 })
 
+app.delete('/guestbook', async (req, res) => {
+    const id = req.params.id
+    await db.query(`DELETE FROM guestbook WHERE id = $1`, [id])
+
+    res.status(200).json({message: "deleted message"})
+})
+
 app.listen(4242, () => {
     console.log(`Server started on port http://localhost:4242`)
 })

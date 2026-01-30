@@ -25,14 +25,23 @@ async function displayMessages() {
     const div = document.createElement('div')
     const userName = document.createElement('p')
     const messageContent = document.createElement('p')
-    const timeCreated=document.createElement(`small`)
+    const timeCreated = document.createElement(`small`)
+    const deleteBtn = document.createElement(`button`)
     
 
     userName.textContent = message.msg_name
     messageContent.textContent = message.content
     timeCreated.textContent = new Date(message.created_at).toLocaleString()
+    deleteBtn.textContent ="Delete"
 
-    div.append(userName, messageContent, timeCreated)
+    deleteBtn.addEventListener(`click`, async () => {
+      await fetch(`${baseURL}/guestbook/${message.id}`, {
+      method: "DELETE"
+      })
+      div.remove()
+    })
+
+    div.append(userName, messageContent, timeCreated, deleteBtn)
 
     display.appendChild(div)
   })
