@@ -36,12 +36,12 @@ form input {
 
 form textarea {
   width: 100%;
-  padding: 10px;
+  padding: 0.6rem;
   margin-bottom: 0.8rem;
-  border: 1px solid white;
+  border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 16px;
-  height: 120px;
+  font-size: 1rem;
+  height: 140px;
   resize: none;      
   overflow-y: scroll;  
   font-family: inherit;
