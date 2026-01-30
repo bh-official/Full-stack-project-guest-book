@@ -27,7 +27,7 @@ app.post('/guestbook', async (req, res) => {
         const { msg_name, content } = req.body
 
     if (!msg_name || !content) {
-    return res.status(400).json({ error: "Name and message are required" })
+        return res.status(400).json({ error: "Name and message are required" })
     }
 
     const dbQuery = await db.query(`INSERT INTO guestbook (msg_name, content) VALUES ($1, $2)`, [msg_name, content])
@@ -35,7 +35,7 @@ app.post('/guestbook', async (req, res) => {
     res.status(201).json({message: "added message"})
     } catch (err){
         console.error("POST ERROR:", err.message)
-    res.status(500).json({ error: err.message })
+        res.status(500).json({ error: err.message })
     }
 })
 
@@ -82,9 +82,6 @@ app.put('/guestbook/:id/like', async (req, res) => {
 
   res.json(result.rows[0])
 })
-
-
-
 
 
 app.listen(4242, () => {

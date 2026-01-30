@@ -1,5 +1,3 @@
-
-
 // fetch messages
 
 const display = document.getElementById('app')
@@ -9,15 +7,10 @@ const baseURL = 'https://full-stack-project-guest-book-server.onrender.com'
 
 async function fetchData() {
   const response = await fetch(`${baseURL}/guestbook`)
-
   const messages = await response.json()
-
   console.log(messages)
-
   return messages
 }
-
-
 
 async function displayMessages() {
   display.innerHTML = ""
@@ -29,6 +22,7 @@ async function displayMessages() {
     div.classList.add("message")
     const userName = document.createElement('p')
     const messageContent = document.createElement('p')
+    messageContent.classList.add("message-content")
     const timeCreated = document.createElement(`small`)
     const deleteBtn = document.createElement(`button`)
     const editBtn = document.createElement(`button`)
@@ -48,14 +42,12 @@ async function displayMessages() {
       const confirmed = confirm("Are you sure you want to delete this message?")
 
       if (!confirmed) {
-      console.log("Delete cancelled")
-      return
+        console.log("Delete cancelled")
+        return
       }
 
-      console.log("Deleting ID:", message.id)
-
       const response = await fetch(`${baseURL}/guestbook/${message.id}`, {
-      method: "DELETE"
+        method: "DELETE"
       })
 
       if (response.ok){
@@ -69,28 +61,28 @@ async function displayMessages() {
     // Update Button
     editBtn.type = "button"
     editBtn.addEventListener("click", async () => {
-    const newName = prompt("Edit name:", message.msg_name)?.trim()
-    const newMessage = prompt("Edit message:", message.content)?.trim()
+      const newName = prompt("Edit name:", message.msg_name)?.trim()
+      const newMessage = prompt("Edit message:", message.content)?.trim()
 
-    if (!newName || !newMessage) return
+      if (!newName || !newMessage) return
 
-    const response = await fetch(`${baseURL}/guestbook/${message.id}`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      msg_name: newName,
-      content: newMessage
-    })
+      const response = await fetch(`${baseURL}/guestbook/${message.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          msg_name: newName,
+          content: newMessage
+      })
     })
 
     if (response.ok) {
-    userName.textContent = newName
-    messageContent.textContent = newMessage
+      userName.textContent = newName
+      messageContent.textContent = newMessage
 
-    message.msg_name = newName
-    message.content = newMessage
+      message.msg_name = newName
+      message.content = newMessage
     } else {
-    alert("Update failed")
+      alert("Update failed")
     }
     })
 
@@ -99,14 +91,14 @@ async function displayMessages() {
     likeBtn.type = "button"
     likeBtn.addEventListener("click", async () => {
     // likeBtn.disabled = true
-    const response = await fetch(`${baseURL}/guestbook/${message.id}/like`, {
-    method: "PUT"
-    })
+      const response = await fetch(`${baseURL}/guestbook/${message.id}/like`, {
+        method: "PUT"
+      })
 
-    const data = await response.json()
-    likeBtn.textContent = `❤️ ${data.likes}`
+      const data = await response.json()
+      likeBtn.textContent = `❤️ ${data.likes}`
 
-    likeBtn.disabled = false
+      likeBtn.disabled = false
     })
 
     div.append(userName, messageContent, timeCreated, deleteBtn, editBtn, likeBtn)
@@ -127,12 +119,12 @@ async function handleSubmit(event) {
   const content = userInput.content.trim()
 
   if (!name || !content) {
-  alert("All fields are required")
-  return
+    alert("All fields are required")
+    return
   }
   if (content.length < 5) {
-  alert("Message must be at least 5 characters")
-  return
+    alert("Message must be at least 5 characters")
+    return
   }
 
 
@@ -142,8 +134,8 @@ async function handleSubmit(event) {
     },
     method: "POST",
     body: JSON.stringify({
-    msg_name: name,
-    content: content
+      msg_name: name,
+      content: content
     })
   })
   display.innerHTML = ""

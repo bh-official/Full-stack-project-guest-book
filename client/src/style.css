@@ -66,13 +66,19 @@ h1 {
   margin-bottom: 1rem;
 }
 
-
 .message {
+  width: 100%;
+  max-width: 600px;
   background: white;
-  padding: 1rem;
+  padding: 12px;
+  margin-bottom: 12px;
   border-radius: 8px;
-  margin-bottom: 1rem;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.message:hover {
+  transform: translateY(-2px);
 }
 
 .message p {
@@ -92,6 +98,14 @@ h1 {
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.9rem;
+}
+
+.message-content {
+  max-height: 80px;        /* 👈 controls scroll height */
+  overflow-y: auto;        /* 👈 enables scrolling */
+  padding-right: 6px;
+  line-height: 1.4;
+  word-wrap: break-word;
 }
 
 .message button:hover {
@@ -130,6 +144,11 @@ h1 {
     background-color: #1f2933;
   }
 
+  .message-content {
+    max-height: 100px;
+    font-size: 14px;
+  }
+  
   form {
     padding: 0.8rem;
     background-color: #1f2933;
