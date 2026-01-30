@@ -67,8 +67,8 @@ async function displayMessages() {
     // Update Button
     editBtn.type = "button"
     editBtn.addEventListener("click", async () => {
-    const newName = prompt("Edit name:", message.msg_name)
-    const newMessage = prompt("Edit message:", message.content)
+    const newName = prompt("Edit name:", message.msg_name)?.trim()
+    const newMessage = prompt("Edit message:", message.content)?.trim()
 
     if (!newName || !newMessage) return
 
@@ -92,16 +92,19 @@ async function displayMessages() {
 
     // like button
     likeBtn.addEventListener("click", async () => {
+    likeBtn.disabled = true
     const response = await fetch(`${baseURL}/guestbook/${message.id}/like`, {
     method: "PUT"
     })
 
     const data = await response.json()
     likeBtn.textContent = `❤️ ${data.likes}`
+
+    likeBtn.disabled = false
     })
 
 
-    div.append(userName, messageContent, timeCreated, deleteBtn, editBtn)
+    div.append(userName, messageContent, timeCreated, deleteBtn, editBtn, likeBtn)
 
     display.appendChild(div)
   })
