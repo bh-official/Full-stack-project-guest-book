@@ -22,33 +22,8 @@ app.get('/guestbook', async (req, res) => {
     res.status(200).json(messages)
 })
 
-
-
-// app.post('/guestbook', async (req, res) => {
-//   try {
-//     if (!req.body) {
-//       return res.status(400).json({ error: "No request body received" })
-//     }
-//     const { msg_name, content } = req.body
-
-//     if (!msg_name || !content) {
-//       return res.status(400).json({ error: "Name and message are required" })
-//     }
-
-//     await db.query(
-//       `INSERT INTO guestbook (msg_name, content) VALUES ($1, $2)`,
-//       [msg_name, content]
-//     )
-
-//     res.status(201).json({ message: "added message" })
-//   } catch (err) {
-//     console.error(err)
-//     res.status(500).json({ error: err.message })
-//   }
-// })
-
-
 app.post('/guestbook', async (req, res) => {
+    try {
     const userData = req.body
 
     if (!msg_name || !content) {
@@ -58,19 +33,12 @@ app.post('/guestbook', async (req, res) => {
     const dbQuery = await db.query(`INSERT INTO guestbook (msg_name, content) VALUES ($1, $2)`, [userData.msg_name, userData.content])
 
     res.status(201).json({message: "added message"})
+    } catch (err){
+        console.error("POST ERROR:", err.message)
+    res.status(500).json({ error: err.message })
+    }
 })
 
-// app.delete('/guestbook/', async (req, res) => {
-//     const id = req.params.id
-//     const result = await db.query(`DELETE FROM guestbook WHERE id = $1 RETURNING *`, [id])
-
-//     console.log("DELETED:", result.rows)
-
-//     res.status(200).json({message: "deleted message"})
-// })
-
-
-// temp delete
 app.delete('/guestbook/:id', async (req, res) => {
   const { id } = req.params
 
