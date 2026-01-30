@@ -64,7 +64,15 @@ async function displayMessages() {
       const newName = prompt("Edit name:", message.msg_name)?.trim()
       const newMessage = prompt("Edit message:", message.content)?.trim()
 
-      if (!newName || !newMessage) return
+      if (!newName || !newMessage) {
+        alert("Name and message cannot be empty")
+        return
+      }
+
+      if (newMessage.length < 5) {
+        alert("Message must be at least 5 characters")
+        return
+      }
 
       const response = await fetch(`${baseURL}/guestbook/${message.id}`, {
         method: "PUT",
