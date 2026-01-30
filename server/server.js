@@ -53,14 +53,35 @@ app.post('/guestbook', async (req, res) => {
     res.status(200).json({message: "added message"})
 })
 
-app.delete('/guestbook/', async (req, res) => {
-    const id = req.params.id
-    const result = await db.query(`DELETE FROM guestbook WHERE id = $1 RETURNING *`, [id])
+// app.delete('/guestbook/', async (req, res) => {
+//     const id = req.params.id
+//     const result = await db.query(`DELETE FROM guestbook WHERE id = $1 RETURNING *`, [id])
 
-    console.log("DELETED:", result.rows)
-    
-    res.status(200).json({message: "deleted message"})
+//     console.log("DELETED:", result.rows)
+
+//     res.status(200).json({message: "deleted message"})
+// })
+
+
+// temp delete
+app.delete('/guestbook/:id', async (req, res) => {
+  const { id } = req.params
+  console.log("DELETE ID RECEIVED:", id)
+
+  const result = await db.query(
+    `DELETE FROM guestbook WHERE id = $1 RETURNING *`,
+    [id]
+  )
+
+  console.log("ROWS DELETED:", result.rows)
+
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: "Nothing deleted" })
+  }
+
+  res.status(200).json({ message: "deleted" })
 })
+
 
 app.listen(4242, () => {
     console.log(`Server started on port http://localhost:4242`)
