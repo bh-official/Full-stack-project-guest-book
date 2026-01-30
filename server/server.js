@@ -53,9 +53,11 @@ app.post('/guestbook', async (req, res) => {
     res.status(200).json({message: "added message"})
 })
 
-app.delete('/guestbook', async (req, res) => {
+app.delete('/guestbook/:id', async (req, res) => {
     const id = req.params.id
     await db.query(`DELETE FROM guestbook WHERE id = $1`, [id])
+
+ console.log("DELETED ROW:", result.rows)
 
     res.status(200).json({message: "deleted message"})
 })
