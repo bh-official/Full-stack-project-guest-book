@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/guestbook', async (req, res) => {
-    const data = await db.query(`SELECT * FROM guestbook`)
+    const data = await db.query(`SELECT id, msg_name, content, created_at FROM guestbook ORDER BY created_at DESC`)
     const messages = data.rows
     res.status(200).json(messages)
 })
@@ -53,12 +53,12 @@ app.post('/guestbook', async (req, res) => {
     res.status(200).json({message: "added message"})
 })
 
-app.delete('/guestbook/:id', async (req, res) => {
+app.delete('/guestbook/', async (req, res) => {
     const id = req.params.id
-    await db.query(`DELETE FROM guestbook WHERE id = $1`, [id])
+    const result = await db.query(`DELETE FROM guestbook WHERE id = $1 RETURNING *`, [id])
 
- console.log("DELETED ROW:", result.rows)
-
+    console.log("DELETED:", result.rows)
+    
     res.status(200).json({message: "deleted message"})
 })
 

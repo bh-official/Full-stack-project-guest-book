@@ -8,7 +8,7 @@ const baseURL = 'https://full-stack-project-guest-book-server.onrender.com'
 
 async function fetchData() {
   const response = await fetch(`${baseURL}/guestbook`)
-  // const response = await fetch(`http://localhost:4242/guestbook`)
+
   const messages = await response.json()
 
   console.log(messages)
@@ -35,10 +35,15 @@ async function displayMessages() {
     deleteBtn.textContent ="Delete"
 
     deleteBtn.addEventListener(`click`, async () => {
-      await fetch(`${baseURL}/guestbook/${message.id}`, {
+      const response = await fetch(`${baseURL}/guestbook/${message.id}`, {
       method: "DELETE"
       })
-      div.remove()
+
+      if (response.ok){
+        div.remove()
+      } else {
+        alert("Delete failed")
+      }
     })
 
     div.append(userName, messageContent, timeCreated, deleteBtn)
