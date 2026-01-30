@@ -25,6 +25,7 @@ async function displayMessages() {
 
   messages.forEach((message) => {
     const div = document.createElement('div')
+    div.classList.add("message")
     const userName = document.createElement('p')
     const messageContent = document.createElement('p')
     const timeCreated = document.createElement(`small`)
