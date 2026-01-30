@@ -29,7 +29,7 @@ async function displayMessages() {
     const messageContent = document.createElement('p')
     const timeCreated = document.createElement(`small`)
     const deleteBtn = document.createElement(`button`)
-    const editBtn = document.creatElement(`button`)
+    const editBtn = document.createElement(`button`)
     
 
     userName.textContent = message.msg_name
