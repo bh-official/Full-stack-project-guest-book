@@ -44,7 +44,8 @@ form textarea {
   min-height: 80px;
   max-height: 150px;
   resize: vertical;      /* resize up/down */
-  overflow-y: auto;      /* scrolling */
+  overflow-y: auto;  
+  line-height: 1.4;    /* scrolling */
 }
 
 form button {
@@ -101,12 +102,8 @@ h1 {
 }
 
 .message-content {
-  max-height: 80px;        /* controls scroll height */
-  overflow-y: auto;        /* enables scrolling */
-  padding-right: 6px;
   line-height: 1.4;
   word-wrap: break-word;
-  border: 1px solid #ddd;
 }
 
 .message button:hover {
