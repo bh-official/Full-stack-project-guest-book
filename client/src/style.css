@@ -41,9 +41,10 @@ form textarea {
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 1rem;
-  min-height: 80px;
-  max-height: 150px;
-  resize: vertical;      /* resize up/down */
+  /* min-height: 80px;
+  max-height: 150px; */
+  height: 120px;
+  resize: none;      
   overflow-y: auto;  
   line-height: 1.4;    /* scrolling */
 }
@@ -154,7 +155,8 @@ h1 {
   }
 
   form textarea {
-    max-height: 130px;
+    /* max-height: 130px; */
+    height: 140px;
   }
 }
 
