@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/guestbook', async (req, res) => {
-    const data = await db.query(`SELECT id, msg_name, content, created_at FROM guestbook ORDER BY created_at DESC`)
+    const data = await db.query(`SELECT id, msg_name, content, created_at, likes FROM guestbook ORDER BY created_at DESC`)
     const messages = data.rows
     res.status(200).json(messages)
 })
@@ -50,9 +50,14 @@ app.get('/guestbook', async (req, res) => {
 
 app.post('/guestbook', async (req, res) => {
     const userData = req.body
+
+    if (!msg_name || !content) {
+    return res.status(400).json({ error: "Name and message are required" })
+    }
+
     const dbQuery = await db.query(`INSERT INTO guestbook (msg_name, content) VALUES ($1, $2)`, [userData.msg_name, userData.content])
 
-    res.status(200).json({message: "added message"})
+    res.status(201).json({message: "added message"})
 })
 
 // app.delete('/guestbook/', async (req, res) => {
