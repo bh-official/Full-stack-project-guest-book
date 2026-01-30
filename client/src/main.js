@@ -90,15 +90,12 @@ async function displayMessages() {
     // like button
     likeBtn.type = "button"
     likeBtn.addEventListener("click", async () => {
-    // likeBtn.disabled = true
       const response = await fetch(`${baseURL}/guestbook/${message.id}/like`, {
         method: "PUT"
       })
 
       const data = await response.json()
       likeBtn.textContent = `❤️ ${data.likes}`
-
-      likeBtn.disabled = false
     })
 
     div.append(userName, messageContent, timeCreated, deleteBtn, editBtn, likeBtn)

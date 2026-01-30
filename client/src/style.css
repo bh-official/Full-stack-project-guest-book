@@ -101,11 +101,12 @@ h1 {
 }
 
 .message-content {
-  max-height: 80px;        /* 👈 controls scroll height */
-  overflow-y: auto;        /* 👈 enables scrolling */
+  max-height: 80px;        /* controls scroll height */
+  overflow-y: auto;        /* enables scrolling */
   padding-right: 6px;
   line-height: 1.4;
   word-wrap: break-word;
+  border: 1px solid #ddd;
 }
 
 .message button:hover {
@@ -148,7 +149,7 @@ h1 {
     max-height: 100px;
     font-size: 14px;
   }
-  
+
   form {
     padding: 0.8rem;
     background-color: #1f2933;
