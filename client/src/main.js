@@ -85,6 +85,9 @@ async function displayMessages() {
     if (response.ok) {
     userName.textContent = newName
     messageContent.textContent = newMessage
+
+    message.msg_name = newName
+    message.content = newMessage
     } else {
     alert("Update failed")
     }
@@ -103,7 +106,6 @@ async function displayMessages() {
 
     likeBtn.disabled = false
     })
-
 
     div.append(userName, messageContent, timeCreated, deleteBtn, editBtn, likeBtn)
 
