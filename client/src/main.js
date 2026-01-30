@@ -105,8 +105,14 @@ async function handleSubmit(event) {
   const name = userInput.msg_name.trim()
   const content = userInput.content.trim()
 
-  if (!name || !content) return
-  if (content.length < 5) return
+  if (!name || !content) {
+  alert("All fields are required")
+  return
+}
+  if (content.length < 5) {
+  alert("Message must be at least 5 characters")
+  return
+}
 
   // const userInputJSON = JSON.stringify({
   // msg_name: name,
