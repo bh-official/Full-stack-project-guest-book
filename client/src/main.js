@@ -41,8 +41,12 @@ async function displayMessages() {
     deleteBtn.textContent ="Delete"
 
     deleteBtn.addEventListener(`click`, async () => {
-      console.log("DELETE CLICKED")
+      const confirmed = confirm("Are you sure you want to delete this message?")
+
+      if (!confirmed) return
+
       console.log("Deleting ID:", message.id)
+      
       const response = await fetch(`${baseURL}/guestbook/${message.id}`, {
       method: "DELETE"
       })
