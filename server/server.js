@@ -22,6 +22,8 @@ app.get('/guestbook', async (req, res) => {
     res.status(200).json(messages)
 })
 
+
+
 // app.post('/guestbook', async (req, res) => {
 //   try {
 //     if (!req.body) {
@@ -66,7 +68,6 @@ app.post('/guestbook', async (req, res) => {
 // temp delete
 app.delete('/guestbook/:id', async (req, res) => {
   const { id } = req.params
-  console.log("DELETE ID RECEIVED:", id)
 
   const result = await db.query(
     `DELETE FROM guestbook WHERE id = $1 RETURNING *`,
@@ -80,6 +81,21 @@ app.delete('/guestbook/:id', async (req, res) => {
   }
 
   res.status(200).json({ message: "deleted" })
+})
+
+
+app.put('/guestbook/:id', async (req, res) => {
+  const { id } = req.params
+  const { msg_name, content } = req.body
+
+  await db.query(
+    `UPDATE guestbook
+     SET msg_name = $1, content = $2
+     WHERE id = $3`,
+    [msg_name, content, id]
+  )
+
+  res.json({ message: "updated message" })
 })
 
 
