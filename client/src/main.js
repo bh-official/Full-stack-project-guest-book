@@ -3,12 +3,12 @@
 
 const display = document.getElementById('app')
 const form = document.getElementById('form')
-// const baseURL = 'https://deploying-and-git-server-2kxl.onrender.com'
+const baseURL = 'https://full-stack-project-guest-book-server.onrender.com'
 
 
 async function fetchData() {
-  // const response = await fetch(`${baseURL}/messages`)
-  const response = await fetch(`http://localhost:4242/guestbook`)
+  const response = await fetch(`${baseURL}/guestbook`)
+  // const response = await fetch(`http://localhost:4242/guestbook`)
   const messages = await response.json()
 
   console.log(messages)
@@ -47,7 +47,7 @@ async function handleSubmit(event) {
   const userInput = Object.fromEntries(formData)
   const userInputJSON = JSON.stringify(userInput)
 
-  const response = await fetch(`http://localhost:4242/guestbook`, {
+  const response = await fetch(`${baseURL}/guestbook`, {
     headers: {
       "Content-Type" : "application/json"
     },
