@@ -61,8 +61,6 @@ async function displayMessages() {
     // Update Button
     editBtn.type = "button"
     editBtn.addEventListener("click", async () => {
-      // const newName = prompt("Edit name:", message.msg_name)?.trim()
-      // const newMessage = prompt("Edit message:", message.content)?.trim()
       const rawName = prompt("Edit name:", message.msg_name)
       if (rawName === null) return   // user clicked Cancel
 
