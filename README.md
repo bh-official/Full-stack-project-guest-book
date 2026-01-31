@@ -127,8 +127,9 @@ The application uses a single `guestbook` table.
 - `created_at` (TIMESTAMPTZ, DEFAULT NOW())  
 - `likes` (INTEGER, DEFAULT 0)  
 
-**Schema Visualiser Screenshot:**  
-https://github.com/bh-official/Full-stack-project-guest-book/blob/main/screenshots/schema-visualizer.png  
+## 🗄️ Database Schema
+
+![Database Schema Visualiser](https://raw.githubusercontent.com/bh-official/Full-stack-project-guest-book/main/screenshots/schema-visualizer.png) 
 
 ---
 
@@ -157,8 +158,9 @@ VALUES
 ('Benjamin', 'A simple visit, but a nice one. Happy to leave my name.', 1),
 ('Nina', 'Leaving a little note to remember my visit.', 0);
 
-**Seed Data Screenshot:**  
-https://github.com/bh-official/Full-stack-project-guest-book/blob/main/screenshots/guestbook-seed.png  
+## 🌱 Seed Data
+
+![Guestbook Seed Data](https://raw.githubusercontent.com/bh-official/Full-stack-project-guest-book/main/screenshots/guestbook-seed.png) 
 
 ---
 
