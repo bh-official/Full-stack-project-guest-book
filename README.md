@@ -127,6 +127,11 @@ The application uses a single `guestbook` table.
 - `created_at` (TIMESTAMPTZ, DEFAULT NOW())  
 - `likes` (INTEGER, DEFAULT 0)  
 
+## 🧮 Query Editor
+
+![SQL Query Editor Screenshot](https://raw.githubusercontent.com/bh-official/Full-stack-project-guest-book/main/screenshots/query-editor.png)
+
+
 ## 🗄️ Database Schema
 
 ![Database Schema Visualiser](https://raw.githubusercontent.com/bh-official/Full-stack-project-guest-book/main/screenshots/schema-visualizer.png) 
